@@ -1,4 +1,4 @@
-# Cyber-Jianghu - Agent SDK (All Beings)
+# Xujing-JH - Agent SDK (All Beings)
 
 > **中文版本**: [Readme.md](./Readme.md)
 

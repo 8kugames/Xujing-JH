@@ -68,7 +68,7 @@ pub async fn health_check(State(state): State<Arc<AppState>>) -> impl IntoRespon
 ///
 /// 返回欢迎信息
 pub async fn root() -> &'static str {
-    "Cyber-Jianghu Server v0.1.0\n\n天道无为，万物自化。"
+    "Xujing-JH Server v0.1.0\n\n天道无为，万物自化。"
 }
 
 /// 协议握手接口

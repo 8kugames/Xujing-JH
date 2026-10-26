@@ -1,5 +1,5 @@
 // ============================================================================
-// Cyber-Jianghu Embedding Service
+// Xujing-JH Embedding Service
 // ============================================================================
 // 本地 BERT 向量嵌入（bge-small-zh-v1.5）
 // - lib: LocalEmbedder（可被 agent crate 复用）

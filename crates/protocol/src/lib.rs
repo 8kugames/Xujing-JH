@@ -1,4 +1,4 @@
-//! # Cyber-Jianghu Protocol
+//! # Xujing-JH Protocol
 //!
 //! 定义 Server 和 Agent 之间的通信协议。
 //!

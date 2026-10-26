@@ -1,5 +1,5 @@
 # ============================================================================
-# Cyber-Jianghu Server Dockerfile — CI / GitHub Actions
+# Xujing-JH Server Dockerfile — CI / GitHub Actions
 # 无国内镜像优化，使用标准 crates.io / Debian 源
 # ============================================================================
 # 多阶段构建 + BuildKit 缓存优化

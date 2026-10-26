@@ -1,4 +1,4 @@
-# Cyber-Jianghu 功能架构
+# Xujing-JH 功能架构
 
 **日期**: 2026-06-09
 

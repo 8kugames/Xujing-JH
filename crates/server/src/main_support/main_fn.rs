@@ -1,7 +1,7 @@
 //! server main 流程（自 main.rs 外移的 main 函数体）
 
 // ============================================================================
-// OpenClaw Cyber-Jianghu MVP 服务端主入口
+// OpenClaw Xujing-JH MVP 服务端主入口
 // ============================================================================
 //
 // 这是整个服务端的入口点，负责：
@@ -62,7 +62,7 @@ pub(crate) async fn run() -> Result<()> {
     }
 
     info!(
-        "OpenClaw Cyber-Jianghu MVP Server v{}",
+        "OpenClaw Xujing-JH MVP Server v{}",
         include_str!("../../../../Version").trim()
     );
     info!("天道无为，万物自化。");

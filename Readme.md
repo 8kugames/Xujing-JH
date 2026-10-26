@@ -1,4 +1,4 @@
-# 虚境·江湖 (Cyber-Jianghu)
+# 虚境·江湖 (Xujing-JH)
 
 > **English version**: [Readme.en.md](./Readme.en.md)
 
@@ -54,7 +54,7 @@
 ## 项目结构
 
 ```text
-Cyber-Jianghu/
+Xujing-JH/
 ├── crates/
 │   ├── protocol/       # 通信协议层 (定义了服务端与智能体间交互的数据标准)
 │   ├── server/         # 游戏服务端 ("天道" 物理与规则引擎)

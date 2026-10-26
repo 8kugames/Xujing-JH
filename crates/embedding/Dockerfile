@@ -1,5 +1,5 @@
 # ============================================================================
-# Cyber-Jianghu Embedding Service Dockerfile
+# Xujing-JH Embedding Service Dockerfile
 # 独立向量嵌入 HTTP 服务（bge-small-zh-v1.5）
 # ============================================================================
 

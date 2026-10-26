@@ -21,7 +21,7 @@ description: "游戏规则配置文件"
 meta:
   created_at: "2026-03-16"
   updated_at: "2026-09-10"
-  author: "Cyber-Jianghu Community"
+  author: "Xujing-JH Community"
   tags: ["rules", "gameplay", "config"]
   notes:
     - "decay 配置已移至 attributes.yaml（每属性独立配置）"

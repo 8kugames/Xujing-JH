@@ -6,7 +6,7 @@ use super::admin_static::{render_admin_token_file_content, write_admin_token_fil
 fn test_render_admin_token_file_content_is_ascii_without_emoji_header() {
     let content = render_admin_token_file_content("自动生成", "read-token", "配置", "write-token");
     assert!(!content.contains("🔐"));
-    assert!(content.contains("Cyber-Jianghu 管理员访问凭证"));
+    assert!(content.contains("Xujing-JH 管理员访问凭证"));
 }
 
 /// 验证：axum::serve 必须链式调用 `.with_graceful_shutdown(...)`，

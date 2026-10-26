@@ -23,7 +23,7 @@ description: "初始背包物品配置"
 meta:
   created_at: "2026-03-16"
   updated_at: "2026-04-21"
-  author: "Cyber-Jianghu Community"
+  author: "Xujing-JH Community"
   tags: ["inventory", "initial", "config"]
 
 data:

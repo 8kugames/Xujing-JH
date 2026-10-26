@@ -2,7 +2,7 @@
 
 > **中文版本**: [QuickStart-Server.md](./QuickStart-Server.md)
 
-This guide helps developers quickly deploy and run the Cyber-Jianghu game server.
+This guide helps developers quickly deploy and run the Xujing-JH game server.
 
 ## Requirements
 

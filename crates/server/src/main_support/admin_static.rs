@@ -64,7 +64,7 @@ pub(crate) fn render_admin_token_file_content(
 ) -> String {
     format!(
         "========================================\n\
-Cyber-Jianghu 管理员访问凭证\n\
+Xujing-JH 管理员访问凭证\n\
 ========================================\n\
 Read Token (只读): [{read_token_source}]\n\
   {admin_read_token}\n\

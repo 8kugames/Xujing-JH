@@ -307,7 +307,7 @@ wait_for_agent() {
 # ── 主流程 ────────────────────────────────────────────────────────────────────
 
 echo "=========================================="
-echo " Cyber-Jianghu Agent Restart Tool"
+echo " Xujing-JH Agent Restart Tool"
 echo "  server: $SERVER_HTTP (key: $SERVER_KEY)"
 echo "=========================================="
 echo ""

@@ -1,4 +1,4 @@
-# Cyber-Jianghu - Communication Protocol Layer
+# Xujing-JH - Communication Protocol Layer
 
 > **中文版本**: [Readme.md](./Readme.md)
 

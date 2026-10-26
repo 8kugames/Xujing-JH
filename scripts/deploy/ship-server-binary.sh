@@ -7,7 +7,7 @@
 #       docker compose up -d → health check → 输出 Admin 凭证。
 #
 # 用法：
-#   SERVER=user@host REMOTE_PROJECT=/path/to/Cyber-Jianghu \
+#   SERVER=user@host REMOTE_PROJECT=/path/to/Xujing-JH \
 #       ./scripts/deploy/ship-server-binary.sh
 #
 # 环境变量：

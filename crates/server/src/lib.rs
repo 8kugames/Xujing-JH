@@ -1,5 +1,5 @@
 // ============================================================================
-// OpenClaw Cyber-Jianghu MVP Server Library
+// OpenClaw Xujing-JH MVP Server Library
 // ============================================================================
 
 pub mod actions;

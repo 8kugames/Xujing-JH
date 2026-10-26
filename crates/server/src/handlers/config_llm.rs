@@ -81,7 +81,7 @@ impl Default for LlmConfigWrapper {
             description: "LLM 配置，用于群像传记的 LLM 增强生成".to_string(),
             meta: LlmMeta {
                 created_at: chrono::Utc::now().format("%Y-%m-%d").to_string(),
-                author: "Cyber-Jianghu".to_string(),
+                author: "Xujing-JH".to_string(),
             },
             data: LlmConfig {
                 enabled: false,

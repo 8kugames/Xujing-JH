@@ -1,5 +1,5 @@
 # ============================================================================
-# OpenClaw Cyber-Jianghu 制作配方配置
+# OpenClaw Xujing-JH 制作配方配置
 # ============================================================================
 #
 # 配方定义：材料、工具、产出和消耗
@@ -26,7 +26,7 @@ description: "制作配方配置文件（统一数据格式）"
 meta:
   created_at: "2026-03-16"
   updated_at: "2026-04-21"
-  author: "Cyber-Jianghu Community"
+  author: "Xujing-JH Community"
   tags:
     - recipes
     - crafting

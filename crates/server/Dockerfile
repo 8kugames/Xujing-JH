@@ -1,5 +1,5 @@
 # ============================================================================
-# OpenClaw Cyber-Jianghu MVP Server Dockerfile
+# OpenClaw Xujing-JH MVP Server Dockerfile
 # 多阶段构建 + BuildKit 缓存优化
 # ============================================================================
 # 启用 BuildKit: DOCKER_BUILDKIT=1 docker build ...

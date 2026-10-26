@@ -4,7 +4,7 @@
 //!
 //! # 设计哲学
 //!
-//! 本协议 crate 为 Cyber-Jianghu 武侠 MMO 设计。
+//! 本协议 crate 为 Xujing-JH 武侠 MMO 设计。
 //!
 //! ## 数据驱动 + Fail-Fast
 //!

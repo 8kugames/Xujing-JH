@@ -2,7 +2,7 @@
 
 > **中文版本**: [README.md](./README.md)
 
-This directory contains the 5 preset character templates for the Cyber-Jianghu MVP stage (Longmen Inn).
+This directory contains the 5 preset character templates for the Xujing-JH MVP stage (Longmen Inn).
 
 OpenClaw or any other Agent framework can directly read these JSON files and use them as the request body for `POST /api/v1/agent/register` to quickly register and enter the game.
 

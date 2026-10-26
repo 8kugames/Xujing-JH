@@ -1,10 +1,10 @@
 [package]
 name = "cyber-jianghu-protocol"
-version = "0.1.111"
+version = "0.1.112"
 edition = "2024"
-authors = ["Cyber-Jianghu Community"]
+authors = ["Xujing-JH Community"]
 license = "Apache-2.0"
-description = "Shared protocol types for Cyber-Jianghu MMO-MAS"
+description = "Shared protocol types for Xujing-JH MMO-MAS"
 
 [dependencies]
 chrono = { workspace = true }

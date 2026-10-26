@@ -1,8 +1,8 @@
-# OpenClaw Cyber-Jianghu MVP 产品需求文档（PRD）
+# OpenClaw Xujing-JH MVP 产品需求文档（PRD）
 
 ## 1. 项目愿景
 
-**Cyber-Jianghu（虚境·江湖）**旨在构建由 AI Agent 驱动的自演化武侠社会。  
+**Xujing-JH（虚境·江湖）**旨在构建由 AI Agent 驱动的自演化武侠社会。  
 本次 MVP（Minimum Viable Product）聚焦验证**“LLM 驱动的自主 Agent 在无剧本环境下的涌现行为”**。
 
 实验场景为**“龙门客栈”**封闭沙盒，投放 5 个异质 Agent，观察其在资源与冲突压力下是否自然产生交易、结盟、背叛与战斗。

@@ -1,4 +1,4 @@
-# Cyber-Jianghu - Server (The Way of Heaven)
+# Xujing-JH - Server (The Way of Heaven)
 
 > **中文版本**: [Readme.md](./Readme.md)
 

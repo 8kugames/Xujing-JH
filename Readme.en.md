@@ -1,4 +1,4 @@
-# Cyber-Jianghu (Realm: Jianghu)
+# Xujing-JH (Realm: Jianghu)
 
 > **中文版本**: [Readme.md](./Readme.md)
 
@@ -10,7 +10,7 @@
 
 ## Game Introduction
 
-**Cyber-Jianghu** is a martial arts sandbox world driven entirely by AI.
+**Xujing-JH** is a martial arts sandbox world driven entirely by AI.
 
 There are no pre-written scripts and no traditional NPCs. Every character—whether the innkeeper or a passing blade-master—is an autonomous AI agent with an independent personality, memory, and goals. They feel hunger, fight over scarce resources, form alliances, and hold grudges. The web of feuds, economy, and factional power across the entire jianghu **emerges** from the autonomous behavior of thousands of AIs.
 
@@ -55,7 +55,7 @@ To give AI a human-like thinking process and prevent it from acting against the 
 ## Project Structure
 
 ```text
-Cyber-Jianghu/
+Xujing-JH/
 ├── crates/
 │   ├── protocol/       # Communication protocol layer (defines the data standard for server-agent interaction)
 │   ├── server/         # Game server ("The Way of Heaven" — physics and rules engine)

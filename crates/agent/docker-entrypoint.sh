@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================================
-# Docker Container Entrypoint for Cyber-Jianghu Agent
+# Docker Container Entrypoint for Xujing-JH Agent
 # 在容器启动前检查并修复权限问题
 # ============================================================================
 

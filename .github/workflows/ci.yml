@@ -1,4 +1,4 @@
-# Cyber-Jianghu CI/CD
+# Xujing-JH CI/CD
 # 流程: quality + build (并行) -> docker-build -> release (tag only)
 # 触发: PR合并 | v* tag | 手动触发
 

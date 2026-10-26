@@ -17,7 +17,7 @@
 #     alpine cp -r /x/models/BAAI/bge-small-zh-v1.5 /out/
 #
 # 用法：
-#   SERVER=user@host REMOTE_PROJECT=/path/to/Cyber-Jianghu \
+#   SERVER=user@host REMOTE_PROJECT=/path/to/Xujing-JH \
 #     COMPOSE_DIR=/path/to/cj-review-agents \
 #     ./scripts/deploy/ship-embedding-binary.sh
 #

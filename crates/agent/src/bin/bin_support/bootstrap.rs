@@ -243,7 +243,7 @@ pub(crate) fn print_startup_banner(
     mode: &str,
 ) {
     info!("╔══════════════════════════════════════════════╗");
-    info!("║   Cyber-Jianghu Agent ({:^20})   ║", mode);
+    info!("║   Xujing-JH Agent ({:^20})   ║", mode);
     info!("╠══════════════════════════════════════════════╣");
     info!("║ HTTP API:  http://0.0.0.0:{}                 ║", port);
     info!("║ WebSocket: {:<34} ║", server_ws_url);
