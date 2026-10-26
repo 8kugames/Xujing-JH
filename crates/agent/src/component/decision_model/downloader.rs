@@ -89,7 +89,7 @@ impl Default for Downloader {
 impl Downloader {
     pub fn new() -> Self {
         let http = reqwest::Client::builder()
-            .user_agent(format!("cyber-jianghu-agent/{}", env!("CARGO_PKG_VERSION")))
+            .user_agent(format!("xujing-jh-agent/{}", env!("CARGO_PKG_VERSION")))
             .connect_timeout(Duration::from_secs(15))
             // 单连接读超时：大文件慢速网络下以进度为准，这里只防死链
             .read_timeout(Duration::from_secs(120))

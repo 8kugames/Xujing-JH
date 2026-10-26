@@ -23,13 +23,13 @@ fn release_info_parse_and_pick_asset() {
         "published_at": "2026-09-15T06:38:16Z",
         "assets": [
             {
-                "name": "cyber-jianghu-agent-linux-arm64",
+                "name": "xujing-jh-agent-linux-arm64",
                 "size": 17474416,
                 "digest": "sha256:1388455bfa7eca7d8eaceca0b738b4c95f33c343679910845a8b9e351ac6f88e",
                 "browser_download_url": "https://example.com/a"
             },
             {
-                "name": "cyber-jianghu-agent-linux-x86_64",
+                "name": "xujing-jh-agent-linux-x86_64",
                 "size": 20037128,
                 "digest": "sha256:586162703a30560b0131e20eca1fbb8b3ecce3bf5eb7d7f7dd50bab1f20deabb",
                 "browser_download_url": "https://example.com/b"
@@ -48,10 +48,10 @@ fn release_info_parse_and_pick_asset() {
 
     // pick_asset 按当前平台资产名精确匹配，跳过无关资产
     let picked = Updater::pick_asset(&release);
-    if Updater::platform_asset_name() == Some("cyber-jianghu-agent-linux-x86_64") {
-        assert_eq!(picked.unwrap().name, "cyber-jianghu-agent-linux-x86_64");
-    } else if Updater::platform_asset_name() == Some("cyber-jianghu-agent-linux-arm64") {
-        assert_eq!(picked.unwrap().name, "cyber-jianghu-agent-linux-arm64");
+    if Updater::platform_asset_name() == Some("xujing-jh-agent-linux-x86_64") {
+        assert_eq!(picked.unwrap().name, "xujing-jh-agent-linux-x86_64");
+    } else if Updater::platform_asset_name() == Some("xujing-jh-agent-linux-arm64") {
+        assert_eq!(picked.unwrap().name, "xujing-jh-agent-linux-arm64");
     } else {
         assert!(picked.is_none());
     }
@@ -61,31 +61,31 @@ fn release_info_parse_and_pick_asset() {
 fn platform_asset_matches_ci_naming() {
     let name = Updater::platform_asset_name();
     #[cfg(all(target_os = "linux", target_arch = "x86_64"))]
-    assert_eq!(name, Some("cyber-jianghu-agent-linux-x86_64"));
+    assert_eq!(name, Some("xujing-jh-agent-linux-x86_64"));
     #[cfg(all(target_os = "linux", target_arch = "aarch64"))]
-    assert_eq!(name, Some("cyber-jianghu-agent-linux-arm64"));
+    assert_eq!(name, Some("xujing-jh-agent-linux-arm64"));
     #[cfg(all(target_os = "macos", target_arch = "aarch64"))]
-    assert_eq!(name, Some("cyber-jianghu-agent-macos-arm64"));
+    assert_eq!(name, Some("xujing-jh-agent-macos-arm64"));
     #[cfg(all(target_os = "windows", target_arch = "x86_64"))]
-    assert_eq!(name, Some("cyber-jianghu-agent-windows-x86_64.exe"));
+    assert_eq!(name, Some("xujing-jh-agent-windows-x86_64.exe"));
 }
 
 #[test]
 fn dev_build_detection() {
     assert!(Updater::is_dev_build(Path::new(
-        "/home/u/proj/target/release/cyber-jianghu-agent"
+        "/home/u/proj/target/release/xujing-jh-agent"
     )));
     assert!(Updater::is_dev_build(Path::new(
-        "/home/u/proj/target/debug/cyber-jianghu-agent"
+        "/home/u/proj/target/debug/xujing-jh-agent"
     )));
     assert!(Updater::is_dev_build(Path::new(
-        "/home/u/proj/target/x86_64-unknown-linux-musl/release/cyber-jianghu-agent"
+        "/home/u/proj/target/x86_64-unknown-linux-musl/release/xujing-jh-agent"
     )));
     assert!(!Updater::is_dev_build(Path::new(
-        "/usr/local/bin/cyber-jianghu-agent"
+        "/usr/local/bin/xujing-jh-agent"
     )));
     assert!(!Updater::is_dev_build(Path::new(
-        "/Users/u/bin/cyber-jianghu-agent"
+        "/Users/u/bin/xujing-jh-agent"
     )));
 }
 
@@ -97,7 +97,7 @@ fn update_state_roundtrip() {
         latest: Some(LatestSummary {
             tag_name: "v0.1.345".to_string(),
             published_at: None,
-            asset_name: "cyber-jianghu-agent-linux-x86_64".to_string(),
+            asset_name: "xujing-jh-agent-linux-x86_64".to_string(),
             asset_digest: Some("sha256:abc".to_string()),
             asset_size: 42,
         }),

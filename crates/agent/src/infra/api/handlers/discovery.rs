@@ -323,7 +323,7 @@ pub(crate) async fn api_list_handler(State(state): State<HttpApiState>) -> impl 
             response_example: Some(serde_json::json!({
                 "current_version": "0.1.386",
                 "update_available": true,
-                "latest": { "tag_name": "v0.1.345", "asset_name": "cyber-jianghu-agent-macos-arm64" }
+                "latest": { "tag_name": "v0.1.345", "asset_name": "xujing-jh-agent-macos-arm64" }
             })),
         },
         ApiEndpoint {

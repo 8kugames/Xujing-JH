@@ -71,6 +71,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # 过渡发行：同时上传旧名（artifact_*）与新名（artifact_*_new）资产。
+        # 旧 agent 仍按 cyber-jianghu-agent-* 自更新；新 agent 使用 xujing-jh-agent-*。
+        # 下一个发行周期删除旧名副本（artifact_*）后即可收敛。
         include:
           - os: ubuntu-latest
             platform: linux-x86_64
@@ -78,6 +81,8 @@ jobs:
             use_zigbuild: true
             artifact_server: cyber-jianghu-server-linux-x86_64
             artifact_client: cyber-jianghu-agent-linux-x86_64
+            artifact_server_new: xujing-jh-server-linux-x86_64
+            artifact_client_new: xujing-jh-agent-linux-x86_64
             bin_server: xujing-jh-server
             bin_client: xujing-jh-agent
           - os: ubuntu-latest
@@ -86,6 +91,8 @@ jobs:
             use_zigbuild: true
             artifact_server: cyber-jianghu-server-linux-arm64
             artifact_client: cyber-jianghu-agent-linux-arm64
+            artifact_server_new: xujing-jh-server-linux-arm64
+            artifact_client_new: xujing-jh-agent-linux-arm64
             bin_server: xujing-jh-server
             bin_client: xujing-jh-agent
           - os: macos-latest
@@ -93,6 +100,8 @@ jobs:
             target: aarch64-apple-darwin
             artifact_server: cyber-jianghu-server-macos-arm64
             artifact_client: cyber-jianghu-agent-macos-arm64
+            artifact_server_new: xujing-jh-server-macos-arm64
+            artifact_client_new: xujing-jh-agent-macos-arm64
             bin_server: xujing-jh-server
             bin_client: xujing-jh-agent
           - os: windows-latest
@@ -100,6 +109,8 @@ jobs:
             target: x86_64-pc-windows-msvc
             artifact_server: cyber-jianghu-server-windows-x86_64.exe
             artifact_client: cyber-jianghu-agent-windows-x86_64.exe
+            artifact_server_new: xujing-jh-server-windows-x86_64.exe
+            artifact_client_new: xujing-jh-agent-windows-x86_64.exe
             bin_server: xujing-jh-server.exe
             bin_client: xujing-jh-agent.exe
 
@@ -150,6 +161,8 @@ jobs:
           mkdir -p artifacts
           cp target/${{ matrix.target }}/release/${{ matrix.bin_server }} artifacts/${{ matrix.artifact_server }}
           cp target/${{ matrix.target }}/release/${{ matrix.bin_client }} artifacts/${{ matrix.artifact_client }}
+          cp target/${{ matrix.target }}/release/${{ matrix.bin_server }} artifacts/${{ matrix.artifact_server_new }}
+          cp target/${{ matrix.target }}/release/${{ matrix.bin_client }} artifacts/${{ matrix.artifact_client_new }}
 
       - uses: actions/upload-artifact@v7
         with:
@@ -160,6 +173,16 @@ jobs:
         with:
           name: ${{ matrix.artifact_client }}
           path: artifacts/${{ matrix.artifact_client }}
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ${{ matrix.artifact_server_new }}
+          path: artifacts/${{ matrix.artifact_server_new }}
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ${{ matrix.artifact_client_new }}
+          path: artifacts/${{ matrix.artifact_client_new }}
 
       - name: Summary
         run: |
