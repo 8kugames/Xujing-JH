@@ -4,6 +4,19 @@
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-10-27
+
+### Refactor
+
+- **项目内统一更名 Xujing-JH**（全仓）：文档、白皮书、QuickStart、面板与注释文案统一；4 个 crate 包名改为 `xujing-jh-*`，server/agent/embedding 二进制与 CLI 名改为 `xujing-jh-*`。
+- **兼容策略**：Rust 库名 `cyber_jianghu_*`、37 个 `CYBER_JIANGHU_*` 环境变量、数据库/数据目录/容器/网络/镜像 tag/volume 名保持不变；模型仓 `Cyber-Jianghu-Decision-2B` 与契约 `$id` 不改。
+
+### Upgrade Notes
+
+- **过渡发行**：Release 资产同时发布 `cyber-jianghu-*` 与 `xujing-jh-*` 两套文件名。旧 agent 继续按旧名自更新；新 agent 使用新名。
+- 已部署 agent 原地自更新后路径不变，systemd/脚本无需立即修改；新安装使用 `xujing-jh-agent`。
+- 旧资产名副本将在后续发行周期移除。
+
 ## [0.2.1] - 2026-10-26
 
 ### Features
