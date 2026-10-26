@@ -64,7 +64,7 @@ ARG CACHEBUST=1
 RUN --mount=type=cache,target=/usr/local/cargo/registry,sharing=locked \
     --mount=type=cache,target=/usr/local/cargo/git,sharing=locked \
     --mount=type=cache,target=/app/target,sharing=locked \
-    cargo build --release -p cyber-jianghu-agent && \
+    cargo build --release -p xujing-jh-agent && \
     cp /app/target/release/cyber-jianghu-agent /app/agent-bin
 
 # ============================================================================

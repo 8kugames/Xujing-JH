@@ -12,9 +12,9 @@
 
 ```toml
 [dependencies]
-cyber-jianghu-protocol = { path = "crates/protocol" }
+xujing-jh-protocol = { path = "crates/protocol" }
 # 如果需要数据库支持
-cyber-jianghu-protocol = { path = "crates/protocol", features = ["sqlx-support"] }
+xujing-jh-protocol = { path = "crates/protocol", features = ["sqlx-support"] }
 ```
 
 ## 架构说明文档

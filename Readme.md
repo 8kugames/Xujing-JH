@@ -77,10 +77,10 @@ Xujing-JH/
 
 ```bash
 # 编译服务端（发布版）
-cargo build -p cyber-jianghu-server --release
+cargo build -p xujing-jh-server --release
 
 # 编译智能体
-cargo build -p cyber-jianghu-agent
+cargo build -p xujing-jh-agent
 
 # 运行自动化测试
 cargo nextest run --workspace

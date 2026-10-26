@@ -63,5 +63,5 @@ jobs:
           # 守卫测试内部自动执行 run_migrations（幂等）后写入夹具
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/cyber_jianghu_guard
         run: |
-          cargo nextest run -p cyber-jianghu-server \
+          cargo nextest run -p xujing-jh-server \
             --test sqlx_live_schema_guard_test --run-ignored=only --nocapture

@@ -241,7 +241,7 @@ pub async fn get_all_relationships(pool: &PgPool) -> Result<Vec<(Uuid, Relations
 // （crates/server/src/db/common.rs::test_init_db_pool）：需要真实 PG 的测试
 // 用 #[ignore] 标注，通过环境变量 DATABASE_URL 驱动。
 //
-// 运行：DATABASE_URL=postgres://... cargo test --package cyber-jianghu-server \
+// 运行：DATABASE_URL=postgres://... cargo test --package xujing-jh-server \
 //       relationship_ops -- --ignored
 
 #[cfg(test)]

@@ -66,7 +66,7 @@ COPY Version ./Version
 RUN --mount=type=cache,target=/usr/local/cargo/registry,sharing=locked \
     --mount=type=cache,target=/usr/local/cargo/git,sharing=locked \
     --mount=type=cache,target=/app/target,sharing=locked \
-    cargo build --release -p cyber-jianghu-server && \
+    cargo build --release -p xujing-jh-server && \
     cp /app/target/release/cyber-jianghu-server /app/server-bin
 
 # ============================================================================

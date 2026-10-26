@@ -35,10 +35,10 @@ tracing-appender = "0.1.2"
 tracing-test = "0.2.6"
 
 # 协议 crate
-cyber-jianghu-protocol = { path = "crates/protocol" }
+xujing-jh-protocol = { path = "crates/protocol" }
 
 # Embedding crate
-cyber-jianghu-embedding = { path = "crates/embedding" }
+xujing-jh-embedding = { path = "crates/embedding" }
 
 [profile.release]
 opt-level = 3

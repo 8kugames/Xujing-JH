@@ -1,15 +1,25 @@
 [package]
-name = "cyber-jianghu-server"
-version = "0.2.2"
+name = "xujing-jh-server"
+version = "0.2.3"
 edition = "2024"
 authors = ["Xujing-JH Community"]
 license = "Apache-2.0"
 description = "MVP server for Xujing-JH MMO-MAS"
 publish = false
 
+[lib]
+# 保持历史 lib 名，避免测试与内部 import 路径改动
+name = "cyber_jianghu_server"
+path = "src/lib.rs"
+
+[[bin]]
+# 二进制改名在 B2 批次处理；本批次先固定旧名
+name = "cyber-jianghu-server"
+path = "src/main.rs"
+
 [dependencies]
 # 内部 crates
-cyber-jianghu-protocol = { version = "0.1.112", path = "../protocol", features = ["sqlx-support"] }
+xujing-jh-protocol = { version = "0.1.113", path = "../protocol", features = ["sqlx-support"] }
 
 # Web 框架
 axum = { version = "0.8.9", features = ["ws"] }

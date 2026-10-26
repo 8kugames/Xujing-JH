@@ -97,7 +97,7 @@ if [ ! -s "$CARGO_HOME/config.toml" ]; then
     printf "[source.crates-io]\nreplace-with = \"aliyun\"\n\n[source.aliyun]\nregistry = \"sparse+https://mirrors.aliyun.com/crates.io-index/\"\n" \
         > "$CARGO_HOME/config.toml"
 fi
-cargo build --release -p cyber-jianghu-embedding
+cargo build --release -p xujing-jh-embedding
 '
 # 从卷中提取二进制到 .bin/（runtime 镜像 COPY 用）
 mkdir -p "$PROJECT_ROOT/.bin"

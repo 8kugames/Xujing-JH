@@ -52,7 +52,7 @@ jobs:
         run: cargo clippy --all-targets -- -D warnings
 
       - name: Build
-        run: cargo build -p cyber-jianghu-server -p cyber-jianghu-agent
+        run: cargo build -p xujing-jh-server -p xujing-jh-agent
 
       - name: Test
         run: cargo nextest run --workspace

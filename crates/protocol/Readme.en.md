@@ -12,9 +12,9 @@ Add to a Rust project:
 
 ```toml
 [dependencies]
-cyber-jianghu-protocol = { path = "crates/protocol" }
+xujing-jh-protocol = { path = "crates/protocol" }
 # If database support is needed
-cyber-jianghu-protocol = { path = "crates/protocol", features = ["sqlx-support"] }
+xujing-jh-protocol = { path = "crates/protocol", features = ["sqlx-support"] }
 ```
 
 ## Architecture Documentation

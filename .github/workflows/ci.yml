@@ -138,11 +138,11 @@ jobs:
 
       - name: Build (zigbuild)
         if: matrix.use_zigbuild
-        run: cargo zigbuild --release --target ${{ matrix.target }} -p cyber-jianghu-server -p cyber-jianghu-agent
+        run: cargo zigbuild --release --target ${{ matrix.target }} -p xujing-jh-server -p xujing-jh-agent
 
       - name: Build (native)
         if: ${{ !matrix.use_zigbuild }}
-        run: cargo build --release --target ${{ matrix.target }} -p cyber-jianghu-server -p cyber-jianghu-agent
+        run: cargo build --release --target ${{ matrix.target }} -p xujing-jh-server -p xujing-jh-agent
 
       - name: Prepare artifacts
         shell: bash

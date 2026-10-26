@@ -19,7 +19,7 @@
 //! docker exec cyber-jianghu-postgres createdb -U postgres cyber_jianghu_verify
 //! # 密码见 crates/server/docker-compose.yml 的 POSTGRES_PASSWORD
 //! DATABASE_URL=postgres://postgres:<POSTGRES_PASSWORD>@localhost:5432/cyber_jianghu_verify \
-//!   cargo nextest run -p cyber-jianghu-server --test sqlx_live_schema_guard_test \
+//!   cargo nextest run -p xujing-jh-server --test sqlx_live_schema_guard_test \
 //!   --run-ignored=only --nocapture
 //! ```
 //!

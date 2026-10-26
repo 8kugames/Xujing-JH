@@ -1,14 +1,24 @@
 [package]
-name = "cyber-jianghu-agent"
-version = "0.1.422"
+name = "xujing-jh-agent"
+version = "0.1.423"
 edition = "2024"
 authors = ["Xujing-JH Community"]
 license = "Apache-2.0"
 description = "Agent SDK for Xujing-JH MMO-MAS - connects to game server with multiple decision modes"
 
+[lib]
+# 保持历史 lib 名，避免内部 import 路径改动
+name = "cyber_jianghu_agent"
+path = "src/lib.rs"
+
+[[bin]]
+# 二进制改名在 B2 批次处理；本批次先固定旧名
+name = "cyber-jianghu-agent"
+path = "src/bin/cyber-jianghu-agent.rs"
+
 [dependencies]
 # 协议（包含合并后的 GameError)
-cyber-jianghu-protocol = { version = "0.1.112", path = "../protocol" }
+xujing-jh-protocol = { version = "0.1.113", path = "../protocol" }
 
 # 异步运行时
 tokio = { workspace = true }
@@ -60,7 +70,7 @@ tower-http = { version = "0.6.11", features = ["cors", "fs"] }
 rusqlite = { version = "0.32.1", features = ["bundled", "chrono"] }
 
 # Embedding 服务（本地嵌入 + 远程调用）
-cyber-jianghu-embedding = { workspace = true }
+xujing-jh-embedding = { workspace = true }
 
 # HNSW 向量索引（用于向量检索）
 instant-distance = "0.6.1"

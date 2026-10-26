@@ -78,7 +78,7 @@ update_version_in_file() {
 update_dependencies() {
     local updated_crate=$1
     local new_version=$2
-    local package_name="cyber-jianghu-$updated_crate"
+    local package_name="xujing-jh-$updated_crate"
 
     for crate in "${CRATES[@]}"; do
         if [ "$crate" = "$updated_crate" ]; then

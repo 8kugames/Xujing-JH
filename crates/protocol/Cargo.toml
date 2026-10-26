@@ -1,10 +1,15 @@
 [package]
-name = "cyber-jianghu-protocol"
-version = "0.1.112"
+name = "xujing-jh-protocol"
+version = "0.1.113"
 edition = "2024"
 authors = ["Xujing-JH Community"]
 license = "Apache-2.0"
 description = "Shared protocol types for Xujing-JH MMO-MAS"
+
+[lib]
+# 保持历史 lib 名，避免 160+ 文件的 import 路径改动
+name = "cyber_jianghu_protocol"
+path = "src/lib.rs"
 
 [dependencies]
 chrono = { workspace = true }

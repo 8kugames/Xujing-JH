@@ -4,7 +4,7 @@
 //!
 //! 运行方式：
 //! ```bash
-//! cargo run -p cyber-jianghu-agent --example validator_example
+//! cargo run -p xujing-jh-agent --example validator_example
 //! ```
 
 use cyber_jianghu_agent::{LlmClient, PersonaInfo, ReflectorSoul, Validator};

@@ -107,7 +107,7 @@ fn test_relationship_ownership_check_rejects_cross_agent_even_if_target_exists()
 // ========================================================================
 //
 // 下列测试需要 PostgreSQL（DATABASE_URL）。CI 无 DB 时跳过。
-// 运行方式：DATABASE_URL=postgres://... cargo test --package cyber-jianghu-server \
+// 运行方式：DATABASE_URL=postgres://... cargo test --package xujing-jh-server \
 //           handle_relationship_snapshot -- --ignored
 
 /// 辅助：构造一个连到 DATABASE_URL 的池，并跑全量迁移。

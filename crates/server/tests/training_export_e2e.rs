@@ -9,7 +9,7 @@
 //! 运行方式 (需 staging 环境):
 //!   DATABASE_URL=postgres://postgres:...@localhost:5432/cyber_jianghu \
 //!   CYBER_JIANGHU_DATA_DIR=crates/server/data \
-//!   cargo test -p cyber-jianghu-server --test training_export_e2e -- --ignored --nocapture
+//!   cargo test -p xujing-jh-server --test training_export_e2e -- --ignored --nocapture
 //!
 //! 不设 DATABASE_URL 时自动跳过 (返回 Ok), 不阻塞 CI.
 

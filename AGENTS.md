@@ -37,19 +37,19 @@ See [Readme.md](Readme.md) for full project description and architecture diagram
 ./install.sh all start --prod
 
 # Build server (debug)
-cargo build -p cyber-jianghu-server
+cargo build -p xujing-jh-server
 
 # Build server (release)
-cargo build -p cyber-jianghu-server --release
+cargo build -p xujing-jh-server --release
 
 # Build agent
-cargo build -p cyber-jianghu-agent
+cargo build -p xujing-jh-agent
 
 # Run tests with nextest (faster, used in CI)
 cargo nextest run --workspace
 
 # Run single test
-cargo test -p cyber-jianghu-server test_name
+cargo test -p xujing-jh-server test_name
 
 # Format check (CI enforces this)
 cargo fmt --check
@@ -71,7 +71,7 @@ cyber-jianghu-agent update --check-only
 cyber-jianghu-agent update
 
 # Run with debug logging
-RUST_LOG=debug cargo run -p cyber-jianghu-server
+RUST_LOG=debug cargo run -p xujing-jh-server
 ```
 
 ### Service Management

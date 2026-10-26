@@ -55,7 +55,7 @@ scp -q "$PROJECT_ROOT/crates/embedding/Dockerfile.runtime" \
     && echo "[ sync ] Dockerfile.runtime"
 
 echo "[构建] 交叉编译（委托 build-linux-binary.sh）"
-BIN_HASH="$(bash "$PROJECT_ROOT/scripts/deploy/build-linux-binary.sh" -p cyber-jianghu-embedding)"
+BIN_HASH="$(bash "$PROJECT_ROOT/scripts/deploy/build-linux-binary.sh" -p xujing-jh-embedding)"
 
 echo "[上传] scp 二进制 + 远端组装 + up + verify"
 scp -q "$BIN" "$SERVER:~/cyber-jianghu-embedding"

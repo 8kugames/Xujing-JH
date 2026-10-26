@@ -78,10 +78,10 @@ Xujing-JH/
 
 ```bash
 # Build the server (release)
-cargo build -p cyber-jianghu-server --release
+cargo build -p xujing-jh-server --release
 
 # Build the agent
-cargo build -p cyber-jianghu-agent
+cargo build -p xujing-jh-agent
 
 # Run the full test suite
 cargo nextest run --workspace

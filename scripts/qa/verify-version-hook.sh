@@ -66,9 +66,9 @@ else
 
     now_proto=$(grep -E '^version' crates/protocol/Cargo.toml | sed -E 's/.*"([0-9]+\.[0-9]+\.[0-9]+)".*/\1/')
     [ "$now_proto" = "$new_proto" ] && ok "protocol: $old_proto → $now_proto" || bad "protocol 版本不符: $now_proto (期望 $new_proto)"
-    grep -q "cyber-jianghu-protocol = { version = \"$new_proto\"" crates/server/Cargo.toml \
+    grep -q "xujing-jh-protocol = { version = \"$new_proto\"" crates/server/Cargo.toml \
         && ok "server 依赖行同步至 $new_proto" || bad "server 依赖行未同步"
-    grep -q "cyber-jianghu-protocol = { version = \"$new_proto\"" crates/agent/Cargo.toml \
+    grep -q "xujing-jh-protocol = { version = \"$new_proto\"" crates/agent/Cargo.toml \
         && ok "agent 依赖行同步至 $new_proto" || bad "agent 依赖行未同步"
     GIT_INDEX_FILE="$TMPDIR_V/idx" git diff --cached --name-only | sort | tr '\n' ' ' | grep -q "crates/agent/Cargo.toml crates/protocol/Cargo.toml crates/server/Cargo.toml" \
         && ok "3 个 Cargo.toml 已并入 commit 索引" || bad "暂存内容不符: $(GIT_INDEX_FILE="$TMPDIR_V/idx" git diff --cached --name-only | tr '\n' ' ')"

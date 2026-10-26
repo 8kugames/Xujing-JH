@@ -111,7 +111,7 @@ scp -q "$PROJECT_ROOT/crates/server/docker-compose.prod.yml" \
 
 echo "[构建] 交叉编译（委托 build-linux-binary.sh）"
 # 经 bash 调用：不依赖文件可执行位，避免部署中途因 +x 缺失报 Permission denied
-BIN_HASH="$(bash "$PROJECT_ROOT/scripts/deploy/build-linux-binary.sh" -p cyber-jianghu-server)"
+BIN_HASH="$(bash "$PROJECT_ROOT/scripts/deploy/build-linux-binary.sh" -p xujing-jh-server)"
 
 echo "[上传] scp + 远端打包 + up + verify"
 scp -q "$BIN" "$SERVER:~/cyber-jianghu-server"

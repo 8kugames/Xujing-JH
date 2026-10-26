@@ -9,8 +9,8 @@
 # （命令替换下 stderr 仍实时可见，且不污染 md5 捕获）。
 #
 # 用法：
-#   MD5="$(./scripts/deploy/build-linux-binary.sh -p cyber-jianghu-server)"
-#   MD5="$(./scripts/deploy/build-linux-binary.sh -p cyber-jianghu-agent)"
+#   MD5="$(./scripts/deploy/build-linux-binary.sh -p xujing-jh-server)"
+#   MD5="$(./scripts/deploy/build-linux-binary.sh -p xujing-jh-agent)"
 #
 # 产物：target/x86_64-unknown-linux-gnu/release/<pkg>，
 #       副本 .bin/<short>-bin（cyber-jianghu-server → server-bin，
