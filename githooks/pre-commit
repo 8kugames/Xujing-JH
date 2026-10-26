@@ -1,16 +1,18 @@
-#!/usr/bin/env bash
 # ============================================================================
 # pre-commit: 版本号控制 + 质量前置检查
 #   · 暂存区含 .rs 变更时, 对暂存文件原地 rustfmt --check（只读不改写）, 失败即中止
 #   · clippy 不在本地校验(需整体编译上下文, 无法按单文件运行), 交由 CI 强制
 #   · 设计红线: 本钩子禁止 stash/restore/checkout 等改写工作树状态的操作——
 #     工作树是多会话并行共享的公共现场, 对其他 session 的未暂存改动必须零触碰
-#   · 暂存区含 crates/<crate>/ 的 .rs/.toml/.yaml 变更时, 该 crate 版本 patch +1
-#   · 同步更新依赖方 Cargo.toml 中的 path 依赖版本引用
+#   · 版本双轨制:
+#     · crate 轨(本钩子职责): 暂存区含 crates/<crate>/ 的 .rs/.toml/.yaml 变更时,
+#       该 crate 版本 patch +1, 并同步依赖方 Cargo.toml 中的 path 依赖版本引用
+#     · 发版轨(本钩子零触碰): 仓库根 ./Version 是项目发版版本, 仅由发版流程推进
+#       (.agents/skills/release/SKILL.md), 发版 tag v<VER> 以它为唯一读数源
 #   · 同步刷新 Cargo.lock (cargo update -w)，按 untrack 决策(f0834eb7)仅本地维护，不入库
 #   · 被修改的 Cargo.toml 自动 git add 并入本次 commit
 #   · 无相关变更时直接放行
-# 依赖: perl (跨平台行内替换, 规避 BSD/GNU sed -i 差异)
+# 依赖: perl (跨平台行内替换, 规避 BSD/GNU sed -i 差异), cargo (刷新 Cargo.lock)
 # 激活: git config core.hooksPath githooks
 # 跳过: git commit --no-verify
 # ============================================================================

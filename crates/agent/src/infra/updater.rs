@@ -4,8 +4,9 @@
 //
 // 更新判定采用 digest 恒等比较：运行时对当前可执行文件计算 sha256，与最新
 // release 中本平台资产的 `digest` 字段（GitHub 在资产上传时自动生成）对比。
-// 不一致即视为需要更新。之所以不用版本号比较：release tag 取自 server crate
-// 版本（见 release skill），而 agent crate 版本独立演进，两者不可比。
+// 不一致即视为需要更新。之所以不用版本号比较：release tag 取自仓库根
+// Version 文件（项目级版本，见 release skill），而 agent crate 版本独立演进，
+// 两者不可比。
 //
 // 安全阀（fail-safe）：
 // - 环境变量 CYBER_JIANGHU_SELF_UPDATE=0/false/off 强制禁用（hard disable）
@@ -285,7 +286,7 @@ impl Updater {
         };
         let asset = Self::pick_asset(&release).ok_or_else(|| {
             anyhow!(
-                "release {} 不含当前平台资产 {}（tag 为 server 版本；本平台可能无发布产物）",
+                "release {} 不含当前平台资产 {}（tag 为仓库根 Version 文件记录的项目版本；本平台可能无发布产物）",
                 release.tag_name,
                 Self::platform_asset_name().unwrap_or("<不支持的平台>")
             )

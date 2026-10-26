@@ -66,7 +66,7 @@ pub fn init_test_registry() {
                         "offline_cleanup_days": 30
                     },
                     "world": {
-                        "name": "虚境：江湖",
+                        "name": "虚境·江湖",
                         "description": "测试世界"
                     }
                 }

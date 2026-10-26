@@ -4,7 +4,7 @@ This file provides guidance to AI coding agents (Claude Code, Zed, Codex, etc.) 
 
 ## Project Overview
 
-**Cyber-Jianghu (虚境：江湖)** is an AI-driven MMO-MAS (Massive Multiplayer Online Multi-Agent Simulation) martial arts sandbox. Every character is an autonomous AI agent with independent personality, memory, and goals. No scripts, no NPCs — only harsh physics and survival pressure. Characters hunger, fight, form alliances, and hold grudges — all emergent from thousands of AI agents.
+**Cyber-Jianghu (虚境·江湖)** is an AI-driven MMO-MAS (Massive Multiplayer Online Multi-Agent Simulation) martial arts sandbox. Every character is an autonomous AI agent with independent personality, memory, and goals. No scripts, no NPCs — only harsh physics and survival pressure. Characters hunger, fight, form alliances, and hold grudges — all emergent from thousands of AI agents.
 
 ### Core Philosophy: Body-Mind Separation (身心分离)
 
@@ -118,7 +118,7 @@ PR checks enforce these before merge:
 3. `cargo nextest run --workspace` - All tests pass
 
 CI builds for 4 platforms: linux-x86_64 (musl), linux-arm64 (musl), macos-arm64, windows-x86_64.
-Docker images published to `ghcr.io/8kugames/cyber-jianghu-server`.
+Docker images published to `ghcr.io/8kugames/xujing-jh-server`.
 
 ## Architecture
 
@@ -330,19 +330,20 @@ use super::builder::AgentBuilder;
 
 ## Key Configuration Files
 
-| Purpose                  | Path                                                                             |
-| ------------------------ | -------------------------------------------------------------------------------- |
-| Environment variables    | `.env`                                                                           |
-| Server configuration     | `crates/server/config/*.yaml`                                                    |
-| World-building rules     | `crates/server/config/world_building_rules.yaml`                                 |
-| Skill definitions        | `crates/server/config/skills/{category}/{skill_id}/SKILL.md`                     |
-| Prompt templates (agent) | `crates/server/config/prompt_templates.yaml` (含 `rule_sections` 按需检索配置)   |
-| Souls governance config  | `crates/server/config/souls.yaml` (Soul 审议规则、投票阈值、主题路由)            |
-| Action evolution config  | `crates/server/config/action_evolution.yaml` (动作演化策略、能力清单)            |
-| Training export config   | `crates/server/config/training_export.yaml` (SFT 导出：调度/分桶/容量，env 覆盖) |
-| Reward config            | `crates/server/config/reward.yaml` (生存 reward ：分量/周期，fail-fast 强制配置) |
-| Database migrations      | `crates/server/migrations/*.sql`                                                 |
-| Docker stack             | `docker-compose.yml`, `docker-compose.prod.yml`                                  |
+| Purpose                  | Path                                                                                              |
+| ------------------------ | ------------------------------------------------------------------------------------------------- |
+| Environment variables    | `.env`                                                                                            |
+| Server configuration     | `crates/server/config/*.yaml`                                                                     |
+| World-building rules     | `crates/server/config/world_building_rules.yaml`                                                  |
+| Skill definitions        | `crates/server/config/skills/{category}/{skill_id}/SKILL.md`                                      |
+| Prompt templates (agent) | `crates/server/config/prompt_templates.yaml` (含 `rule_sections` 按需检索配置)                    |
+| Souls governance config  | `crates/server/config/souls.yaml` (Soul 审议规则、投票阈值、主题路由)                             |
+| Action evolution config  | `crates/server/config/action_evolution.yaml` (动作演化策略、能力清单)                             |
+| Training export config   | `crates/server/config/training_export.yaml` (SFT 导出：调度/分桶/容量，env 覆盖)                  |
+| Reward config            | `crates/server/config/reward.yaml` (生存 reward ：分量/周期，fail-fast 强制配置)                  |
+| Database migrations      | `crates/server/migrations/*.sql`                                                                  |
+| Project version          | `Version` (仓库根，项目发版版本唯一真源，仅由发版流程推进；crate 版本由 pre-commit hook 独立演进) |
+| Docker stack             | `docker-compose.yml`, `docker-compose.prod.yml`                                                   |
 
 ### Config Hot-Reload Coverage (升级 runbook 必读)
 
@@ -561,7 +562,7 @@ Agent embedder provider selection (via `CYBER_JIANGHU_EMBEDDER_REMOTE_URL` env v
 
 **Agent HTTP Auth**: all agent HTTP endpoints (except public paths `/`, `/api/v1`, `/api/v1/health`, `/api/v1/version`, `/api/v1/setup`, static assets) require `Authorization: Bearer <token>`. Accepted tokens are the UNION of env `CYBER_JIANGHU_AGENT_TOKEN` (static token, enables auth before device registration for external clients) and the device `auth_token` from server registration (used by the local panel). SSE endpoints (`/api/v1/events`, `/api/v1/state/stream`, `/api/v1/decision-model/events`) additionally accept `?token=<token>`. No token configured at all -> 503 (fail-closed).
 
-**Agent Self-Update**: agent can self-update from GitHub Releases (`update` section in `agent.yaml`: `enabled`/`auto_apply`/`check_interval_secs`/`repo`, defaults `true`/`true`/`21600`/`8kugames/Cyber-Jianghu`). Update decision is digest identity (current exe sha256 vs latest release platform asset `digest`) because release tags carry the SERVER version while agent crate versions are independent. Download is sha256-verified (missing digest => refuse to install). Background loop auto-applies and restarts (unix execve / Windows `*.exe.old` + spawn). Auto-apply is skipped inside containers (`/.dockerenv` / `/.containerenv` — update the image instead) and for cargo builds (exe under `target/`). Env `CYBER_JIANGHU_SELF_UPDATE=0` hard-disables all update network activity. The CLI `update` subcommand installs but never restarts itself.
+**Agent Self-Update**: agent can self-update from GitHub Releases (`update` section in `agent.yaml`: `enabled`/`auto_apply`/`check_interval_secs`/`repo`, defaults `true`/`true`/`21600`/`8kugames/Xujing-JH`). Update decision is digest identity (current exe sha256 vs latest release platform asset `digest`) because release tags carry the project version from `./Version` while agent crate versions are independent. Download is sha256-verified (missing digest => refuse to install). Background loop auto-applies and restarts (unix execve / Windows `*.exe.old` + spawn). Auto-apply is skipped inside containers (`/.dockerenv` / `/.containerenv` — update the image instead) and for cargo builds (exe under `target/`). Env `CYBER_JIANGHU_SELF_UPDATE=0` hard-disables all update network activity. The CLI `update` subcommand installs but never restarts itself.
 
 **Events & Config**:
 

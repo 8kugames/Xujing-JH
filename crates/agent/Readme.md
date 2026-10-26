@@ -1,4 +1,4 @@
-# 虚境：江湖 - 智能体 SDK (众生)
+# 虚境·江湖 - 智能体 SDK (众生)
 
 > **English version**: [Readme.en.md](./Readme.en.md)
 

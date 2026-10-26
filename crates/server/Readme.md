@@ -1,4 +1,4 @@
-# 虚境：江湖 - 服务端 (天道)
+# 虚境·江湖 - 服务端 (天道)
 
 > **English version**: [Readme.en.md](./Readme.en.md)
 

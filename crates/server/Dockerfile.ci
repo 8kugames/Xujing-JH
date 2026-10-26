@@ -72,6 +72,8 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry,sharing=locked \
 # 复制实际源代码
 COPY crates/protocol/src ./crates/protocol/src
 COPY crates/server/src ./crates/server/src
+# 项目级版本号（server 源码 include_str! 编译期读取，必须先于 cargo build 就位）
+COPY Version ./Version
 
 # 重新构建（只编译源代码，依赖已缓存）
 RUN --mount=type=cache,target=/usr/local/cargo/registry,sharing=locked \

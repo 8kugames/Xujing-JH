@@ -63,7 +63,7 @@ pub(crate) async fn run() -> Result<()> {
 
     info!(
         "OpenClaw Cyber-Jianghu MVP Server v{}",
-        env!("CARGO_PKG_VERSION")
+        include_str!("../../../../Version").trim()
     );
     info!("天道无为，万物自化。");
 

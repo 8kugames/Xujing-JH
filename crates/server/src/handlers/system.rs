@@ -43,7 +43,7 @@ pub async fn health_check(State(state): State<Arc<AppState>>) -> impl IntoRespon
     };
     let response = Json(HealthResponse {
         status: status.to_string(),
-        version: env!("CARGO_PKG_VERSION").to_string(),
+        version: include_str!("../../../../Version").trim().to_string(),
         tick_duration_secs,
         db: DbHealthStatus {
             current_query_ok: db_ok,
@@ -79,7 +79,7 @@ pub async fn root() -> &'static str {
 /// Agent 的 /api/v1/version 会透传本端点的 server_version 字段。
 pub async fn version() -> impl IntoResponse {
     Json(serde_json::json!({
-        "server_version": env!("CARGO_PKG_VERSION"),
+        "server_version": include_str!("../../../../Version").trim(),
         "protocol_version": cyber_jianghu_protocol::PROTOCOL_VERSION,
     }))
 }

@@ -298,7 +298,7 @@ fn default_update_check_interval_secs() -> u64 {
 }
 
 fn default_update_repo() -> String {
-    "8kugames/Cyber-Jianghu".to_string()
+    "8kugames/Xujing-JH".to_string()
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]

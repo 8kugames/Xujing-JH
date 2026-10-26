@@ -151,5 +151,5 @@ fn load_update_config_defaults_without_file() {
     unsafe { std::env::remove_var("CYBER_JIANGHU_CONFIG_DIR") };
     assert!(cfg.enabled);
     assert!(cfg.auto_apply);
-    assert_eq!(cfg.repo, "8kugames/Cyber-Jianghu");
+    assert_eq!(cfg.repo, "8kugames/Xujing-JH");
 }

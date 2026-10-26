@@ -59,6 +59,8 @@ RUN mkdir -p crates/protocol/src crates/embedding/src crates/server/src crates/a
 # 复制真实 protocol 源码，之后构建将检测到变化并重新编译
 COPY crates/protocol/src ./crates/protocol/src
 COPY crates/server/src ./crates/server/src
+# 项目级版本号（server 源码 include_str! 编译期读取，必须先于 cargo build 就位）
+COPY Version ./Version
 
 # 构建（使用 BuildKit 缓存挂载加速依赖）
 RUN --mount=type=cache,target=/usr/local/cargo/registry,sharing=locked \

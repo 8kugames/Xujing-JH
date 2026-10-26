@@ -17,7 +17,7 @@
     },
     "server_version": {
       "type": ["string", "null"],
-      "description": "Server crate 版本;agent 端点上 server 不可达时为 null"
+      "description": "项目版本(唯一真源为仓库根 Version 文件,编译期嵌入 server 二进制);agent 端点上 server 不可达时为 null"
     }
   }
 }

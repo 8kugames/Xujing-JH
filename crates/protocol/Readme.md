@@ -1,4 +1,4 @@
-# 虚境：江湖 - 通信协议层
+# 虚境·江湖 - 通信协议层
 
 > **English version**: [Readme.en.md](./Readme.en.md)
 

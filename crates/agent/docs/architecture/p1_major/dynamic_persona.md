@@ -1,6 +1,6 @@
 # 动态角色演化 (Dynamic Persona)
 
-在虚境：江湖中，Agent 的人设不是一成不变的文本，而是会随着游戏事件的发生而产生动态演化（Evolution）。这种演化机制保证了角色的成长和性格转变。
+在虚境·江湖中，Agent 的人设不是一成不变的文本，而是会随着游戏事件的发生而产生动态演化（Evolution）。这种演化机制保证了角色的成长和性格转变。
 
 相关代码路径：`crates/agent/src/component/persona/`
 

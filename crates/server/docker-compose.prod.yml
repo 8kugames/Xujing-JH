@@ -6,8 +6,8 @@
 # 部署步骤：
 #
 # 1. 首次部署（在服务器上）
-#    git clone https://github.com/8kugames/cyber-jianghu.git
-#    cd cyber-jianghu/crates/server
+#    git clone https://github.com/8kugames/Xujing-JH.git
+#    cd Xujing-JH/crates/server
 #    cp .env.example .env
 #    # 编辑 .env，修改 DB_PASSWORD 等敏感配置
 #
