@@ -4,7 +4,20 @@
 
 ## [Unreleased]
 
+## [0.2.3] - 2026-10-27
+
+### Bug Fixes
+
+- **server Docker 镜像构建修复**（build）：为显式 `[lib]` 补齐缓存阶段 `lib.rs` 桩，修复 `can't find lib cyber_jianghu_server` 导致的镜像构建失败。
+
+### Upgrade Notes
+
+- **v0.2.3 为实际过渡发行**：v0.2.2 tag 的镜像构建未产出 Release；v0.2.3 同时发布新旧资产名，存量 agent 有一个完整发行周期完成自更新。
+- 旧资产名移除顺延到下一发行周期（v0.2.4）。
+
 ## [0.2.2] - 2026-10-27
+
+> 注：v0.2.2 的镜像构建失败，未生成 Release；相关改动随 v0.2.3 发布。
 
 ### Refactor
 
