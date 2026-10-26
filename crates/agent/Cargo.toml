@@ -1,6 +1,6 @@
 [package]
 name = "xujing-jh-agent"
-version = "0.1.426"
+version = "0.1.425"
 edition = "2024"
 authors = ["Xujing-JH Community"]
 license = "Apache-2.0"

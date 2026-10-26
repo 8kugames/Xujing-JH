@@ -4,10 +4,6 @@
 
 ## [Unreleased]
 
-### Chore
-
-- **移除过渡期旧资产名**（release）：CI 不再上传 `cyber-jianghu-*` 资产副本，Release 资产收敛为 `xujing-jh-*`；运行时标识与兼容变量保持不变。
-
 ## [0.2.2] - 2026-10-27
 
 ### Refactor

@@ -227,6 +227,8 @@ impl Updater {
     // ------------------------------------------------------------------
 
     /// CI 发布的 agent 资产命名（.github/workflows/ci.yml build matrix）。
+    /// 过渡版本同时发布旧名 cyber-jianghu-agent-* 副本，供尚未升级的旧 agent
+    /// 自更新；新 agent 只认新名。旧名副本在下一个发行周期移除。
     /// macOS x86_64 无发布产物，返回 None。
     pub fn platform_asset_name() -> Option<&'static str> {
         match (std::env::consts::OS, std::env::consts::ARCH) {
