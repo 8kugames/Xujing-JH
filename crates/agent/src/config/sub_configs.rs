@@ -297,8 +297,34 @@ fn default_update_check_interval_secs() -> u64 {
     21_600
 }
 
+/// 当前自更新源仓库（仓库更名 Xujing-JH 后的唯一真源）
+pub(crate) const DEFAULT_UPDATE_REPO: &str = "8kugames/Xujing-JH";
+
+/// 历史自更新源仓库；命中时自动迁移并回写 agent.yaml
+const LEGACY_UPDATE_REPOS: &[&str] = &["8kugames/Cyber-Jianghu"];
+
 fn default_update_repo() -> String {
-    "8kugames/Xujing-JH".to_string()
+    DEFAULT_UPDATE_REPO.to_string()
+}
+
+/// 旧仓库 slug 归一化为当前 slug；非旧值返回 None（大小写不敏感）
+pub(crate) fn migrate_update_repo(repo: &str) -> Option<&'static str> {
+    let repo = repo.trim();
+    LEGACY_UPDATE_REPOS
+        .iter()
+        .any(|old| repo.eq_ignore_ascii_case(old))
+        .then_some(DEFAULT_UPDATE_REPO)
+}
+
+/// 读入旧 slug 时直接归一化，覆盖 Config::from_file / load_update_config 等所有 serde 路径
+fn deserialize_update_repo<'de, D>(deserializer: D) -> std::result::Result<String, D::Error>
+where
+    D: serde::Deserializer<'de>,
+{
+    let repo = String::deserialize(deserializer)?;
+    Ok(migrate_update_repo(&repo)
+        .map(str::to_string)
+        .unwrap_or(repo))
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
@@ -316,7 +342,10 @@ pub struct UpdateConfig {
     pub check_interval_secs: u64,
 
     /// 更新源仓库（owner/repo，须为公开仓库的 GitHub Release）
-    #[serde(default = "default_update_repo")]
+    #[serde(
+        default = "default_update_repo",
+        deserialize_with = "deserialize_update_repo"
+    )]
     pub repo: String,
 }
 
@@ -329,6 +358,89 @@ impl Default for UpdateConfig {
             repo: default_update_repo(),
         }
     }
+}
+
+/// 将顶层 update 段中的旧 repo 值原地替换（保留缩进、注释与换行风格）。
+/// 返回 Some(新内容) 表示发生了替换。
+pub(crate) fn rewrite_update_repo_line(content: &str, new_repo: &str) -> Option<String> {
+    let mut out = String::with_capacity(content.len() + 8);
+    let mut in_update = false;
+    let mut replaced = false;
+
+    for line in content.split_inclusive('\n') {
+        let (body, ending) = match line.strip_suffix("\r\n") {
+            Some(body) => (body, "\r\n"),
+            None => match line.strip_suffix('\n') {
+                Some(body) => (body, "\n"),
+                None => (line, ""),
+            },
+        };
+        let trimmed = body.trim_start();
+        let indent = body.len() - trimmed.len();
+
+        if in_update && indent == 0 && !trimmed.is_empty() && !trimmed.starts_with('#') {
+            in_update = false;
+        }
+
+        if !in_update && indent == 0 && trimmed == "update:" {
+            in_update = true;
+            out.push_str(line);
+            continue;
+        }
+
+        if in_update && !replaced && trimmed.starts_with("repo:") {
+            let rest_start = indent + "repo:".len();
+            let rest = &body[rest_start..];
+            let value_offset = rest.len() - rest.trim_start().len();
+            let after_value = &rest[value_offset..];
+            let value_len = after_value
+                .find(|c: char| c.is_whitespace() || c == '#')
+                .unwrap_or(after_value.len());
+            let unquoted = after_value[..value_len].trim_matches(|c| c == '"' || c == '\'');
+            if migrate_update_repo(unquoted).is_some() {
+                out.push_str(&body[..rest_start + value_offset]);
+                out.push_str(new_repo);
+                out.push_str(&after_value[value_len..]);
+                out.push_str(ending);
+                replaced = true;
+                continue;
+            }
+        }
+
+        out.push_str(line);
+    }
+
+    replaced.then_some(out)
+}
+
+/// 尽力将 agent.yaml 中的旧 repo 行原子回写为 new_repo。
+/// 返回 Ok(false) 表示文件中没有需要迁移的行。
+pub(crate) fn persist_migrated_repo(path: &Path, content: &str, new_repo: &str) -> Result<bool> {
+    let Some(updated) = rewrite_update_repo_line(content, new_repo) else {
+        return Ok(false);
+    };
+    let Some(parent) = path.parent() else {
+        anyhow::bail!("agent.yaml 路径缺少父目录: {}", path.display());
+    };
+    let stamp = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map(|d| d.as_nanos())
+        .unwrap_or(0);
+    let tmp = parent.join(format!(
+        ".agent.yaml.repo-migrate.{}.{}.tmp",
+        std::process::id(),
+        stamp
+    ));
+    std::fs::write(&tmp, updated)
+        .with_context(|| format!("写入临时配置文件失败: {}", tmp.display()))?;
+    if let Ok(meta) = std::fs::metadata(path) {
+        let _ = std::fs::set_permissions(&tmp, meta.permissions());
+    }
+    if let Err(e) = std::fs::rename(&tmp, path) {
+        let _ = std::fs::remove_file(&tmp);
+        return Err(e).with_context(|| format!("替换配置文件失败: {}", path.display()));
+    }
+    Ok(true)
 }
 
 // ============================================================================
@@ -565,6 +677,18 @@ impl Config {
 
         let config: Config =
             serde_yaml::from_str(&content).with_context(|| "Failed to parse config file")?;
+
+        // update.repo 的旧 slug 已在反序列化时归一化；这里只负责尽力回写文件
+        match persist_migrated_repo(path.as_ref(), &content, DEFAULT_UPDATE_REPO) {
+            Ok(true) => tracing::info!(
+                "更新源仓库已自动迁移并回写: 8kugames/Cyber-Jianghu -> {DEFAULT_UPDATE_REPO}"
+            ),
+            Ok(false) => {}
+            Err(e) => tracing::warn!(
+                "更新源仓库已迁移为 {DEFAULT_UPDATE_REPO}，但回写 {} 失败（本次仍使用新仓库）: {e:#}",
+                path_display
+            ),
+        }
 
         Ok(config)
     }

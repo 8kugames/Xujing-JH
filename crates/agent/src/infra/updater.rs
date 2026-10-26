@@ -675,20 +675,41 @@ pub async fn run_background(updater: Arc<Updater>) {
 // CLI 入口
 // ============================================================================
 
-/// 从 agent.yaml 读取 update 段（文件缺失 / 段缺失 / 解析失败一律回退默认值）
+/// 从 agent.yaml 读取 update 段（文件缺失 / 段缺失 / 解析失败一律回退默认值）。
+/// 旧仓库 slug 会被自动迁移为当前仓库，并尽力原子回写配置文件。
 pub fn load_update_config() -> UpdateConfig {
-    let path = crate::config::config_dir().join("agent.yaml");
-    let Ok(content) = std::fs::read_to_string(&path) else {
+    load_update_config_from(&crate::config::config_dir().join("agent.yaml"))
+}
+
+fn load_update_config_from(path: &Path) -> UpdateConfig {
+    let Ok(content) = std::fs::read_to_string(path) else {
         return UpdateConfig::default();
     };
     let Ok(value) = serde_yaml::from_str::<serde_yaml::Value>(&content) else {
         return UpdateConfig::default();
     };
-    value
+    let config = value
         .get("update")
         .cloned()
         .and_then(|v| serde_yaml::from_value::<UpdateConfig>(v).ok())
-        .unwrap_or_default()
+        .unwrap_or_default();
+
+    // repo 旧 slug 已在 UpdateConfig 反序列化时归一化；这里只负责尽力回写文件
+    match crate::config::persist_migrated_repo(path, &content, crate::config::DEFAULT_UPDATE_REPO) {
+        Ok(true) => tracing::info!(
+            "更新源仓库已自动迁移并回写: 8kugames/Cyber-Jianghu -> {} ({})",
+            crate::config::DEFAULT_UPDATE_REPO,
+            path.display()
+        ),
+        Ok(false) => {}
+        Err(e) => tracing::warn!(
+            "更新源仓库已迁移为 {}，但回写 {} 失败（本次仍使用新仓库）: {e:#}",
+            crate::config::DEFAULT_UPDATE_REPO,
+            path.display()
+        ),
+    }
+
+    config
 }
 
 /// `cyber-jianghu-agent update [--check-only]`：手动检查 / 安装。

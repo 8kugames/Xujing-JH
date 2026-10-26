@@ -85,6 +85,50 @@ fn test_reflector_llm_inheritance() {
 }
 
 #[test]
+fn test_config_from_file_migrates_legacy_update_repo() {
+    let dir = std::env::temp_dir().join(format!("cyj-config-migrate-{}", std::process::id()));
+    std::fs::create_dir_all(&dir).unwrap();
+    let path = dir.join("agent.yaml");
+
+    let config = Config {
+        server: ServerConfig::default(),
+        runtime: RuntimeConfig::default(),
+        llm: LlmConfig::default(),
+        llm_reflector: None,
+        llm_secondary: None,
+        memory: MemoryConfig::default(),
+        game_rules: None,
+        config_path: path.clone(),
+        servers_dir: PathBuf::new(),
+        earth_soul: crate::soul::earth::config::EarthSoulConfig::default(),
+        token_optimization: TokenOptimizationConfig::default(),
+        update: UpdateConfig {
+            repo: "8kugames/Cyber-Jianghu".to_string(),
+            ..Default::default()
+        },
+        decision_model: DecisionModelConfig::default(),
+        character_generation: test_cg(),
+    };
+    config.save_to_file(&path).unwrap();
+    assert!(
+        std::fs::read_to_string(&path)
+            .unwrap()
+            .contains("repo: 8kugames/Cyber-Jianghu\n")
+    );
+
+    let loaded = Config::from_file(&path).unwrap();
+
+    assert_eq!(loaded.update.repo, "8kugames/Xujing-JH");
+    let migrated = std::fs::read_to_string(&path).unwrap();
+    assert!(
+        !migrated.contains("repo: 8kugames/Cyber-Jianghu\n"),
+        "legacy update repo not rewritten:\n{migrated}"
+    );
+    assert!(migrated.contains("repo: 8kugames/Xujing-JH\n"));
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
+#[test]
 fn test_reflector_llm_override() {
     let mut llm = LlmConfig::default();
     llm.provider = "ollama".to_string();

@@ -153,3 +153,45 @@ fn load_update_config_defaults_without_file() {
     assert!(cfg.auto_apply);
     assert_eq!(cfg.repo, "8kugames/Xujing-JH");
 }
+
+#[test]
+fn update_config_deserializes_legacy_repo_to_current() {
+    let cfg: UpdateConfig = serde_yaml::from_str("repo: 8kugames/Cyber-Jianghu\n").unwrap();
+    assert_eq!(cfg.repo, "8kugames/Xujing-JH");
+}
+
+#[test]
+fn load_update_config_migrates_legacy_repo_and_rewrites_file() {
+    let dir = std::env::temp_dir().join(format!("cyj-migrate-{}", std::process::id()));
+    std::fs::create_dir_all(&dir).unwrap();
+    let path = dir.join("agent.yaml");
+    std::fs::write(
+        &path,
+        "update:\n  enabled: true\n  repo: 8kugames/Cyber-Jianghu # legacy source\n  auto_apply: false\n",
+    )
+    .unwrap();
+
+    let cfg = load_update_config_from(&path);
+
+    assert_eq!(cfg.repo, "8kugames/Xujing-JH");
+    assert!(!cfg.auto_apply);
+    let rewritten = std::fs::read_to_string(&path).unwrap();
+    assert!(rewritten.contains("repo: 8kugames/Xujing-JH # legacy source"));
+    assert!(!rewritten.contains("8kugames/Cyber-Jianghu"));
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
+#[test]
+fn load_update_config_keeps_current_repo_without_rewrite() {
+    let dir = std::env::temp_dir().join(format!("cyj-current-{}", std::process::id()));
+    std::fs::create_dir_all(&dir).unwrap();
+    let path = dir.join("agent.yaml");
+    let original = "update:\n  repo: \"8kugames/Xujing-JH\"\n";
+    std::fs::write(&path, original).unwrap();
+
+    let cfg = load_update_config_from(&path);
+
+    assert_eq!(cfg.repo, "8kugames/Xujing-JH");
+    assert_eq!(std::fs::read_to_string(&path).unwrap(), original);
+    let _ = std::fs::remove_dir_all(&dir);
+}
