@@ -1,5 +1,5 @@
 // ============================================================================
-// 本地嵌入模型 - Re-export from cyber-jianghu-embedding crate
+// 本地嵌入模型 - Re-export from xujing-jh-embedding crate
 // ============================================================================
 
 pub use cyber_jianghu_embedding::LocalEmbedder;

@@ -14,8 +14,8 @@ Agent 核心逻辑（认知流转、三层记忆、多重人格）均在同一�
 
 | 模式                 | 描述                                                                                   | LLM 客户端实现      | 启动命令                              |
 | -------------------- | -------------------------------------------------------------------------------------- | ------------------- | ------------------------------------- |
-| **Cognitive** (默认) | 完全自治。Agent 内部直接调用大模型，闭环生成 Intent。                                  | `FallbackLlmClient` | `cyber-jianghu-agent run`             |
-| **Claw**             | 外部大脑。通过 OpenClaw 桥接外部大模型，Agent 本身只提供上下文，决策由 OpenClaw 注入。 | `OpenClawBridge`    | `cyber-jianghu-agent run --mode claw` |
+| **Cognitive** (默认) | 完全自治。Agent 内部直接调用大模型，闭环生成 Intent。                                  | `FallbackLlmClient` | `xujing-jh-agent run`             |
+| **Claw**             | 外部大脑。通过 OpenClaw 桥接外部大模型，Agent 本身只提供上下文，决策由 OpenClaw 注入。 | `OpenClawBridge`    | `xujing-jh-agent run --mode claw` |
 
 ## 安装与部署
 
@@ -26,10 +26,10 @@ Agent 核心逻辑（认知流转、三层记忆、多重人格）均在同一�
 cargo install --path crates/agent
 
 # 启动默认模式
-cyber-jianghu-agent run
+xujing-jh-agent run
 
 # 或者指定端口启动
-CYBER_JIANGHU_PORT=23340 cyber-jianghu-agent run
+CYBER_JIANGHU_PORT=23340 xujing-jh-agent run
 ```
 
 ### 2. Docker 部署

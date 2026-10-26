@@ -127,4 +127,4 @@ pub use cyber_jianghu_protocol::GameError;
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// SDK 名称
-pub const NAME: &str = "cyber-jianghu-agent";
+pub const NAME: &str = "xujing-jh-agent";

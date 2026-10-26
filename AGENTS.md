@@ -61,14 +61,14 @@ cargo clippy --workspace --all-targets -- -D warnings
 cargo clippy --workspace --all-targets --fix --allow-dirty
 
 # Run agent in Cognitive mode (default, built-in LLM)
-cyber-jianghu-agent run
+xujing-jh-agent run
 
 # Run agent in Claw mode (external LLM via OpenClaw)
-cyber-jianghu-agent run --mode claw --port 0
+xujing-jh-agent run --mode claw --port 0
 
 # Check / install agent self-update from GitHub Release (CLI never restarts itself)
-cyber-jianghu-agent update --check-only
-cyber-jianghu-agent update
+xujing-jh-agent update --check-only
+xujing-jh-agent update
 
 # Run with debug logging
 RUST_LOG=debug cargo run -p xujing-jh-server

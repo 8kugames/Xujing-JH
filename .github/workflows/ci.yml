@@ -78,30 +78,30 @@ jobs:
             use_zigbuild: true
             artifact_server: cyber-jianghu-server-linux-x86_64
             artifact_client: cyber-jianghu-agent-linux-x86_64
-            bin_server: cyber-jianghu-server
-            bin_client: cyber-jianghu-agent
+            bin_server: xujing-jh-server
+            bin_client: xujing-jh-agent
           - os: ubuntu-latest
             platform: linux-arm64
             target: aarch64-unknown-linux-musl
             use_zigbuild: true
             artifact_server: cyber-jianghu-server-linux-arm64
             artifact_client: cyber-jianghu-agent-linux-arm64
-            bin_server: cyber-jianghu-server
-            bin_client: cyber-jianghu-agent
+            bin_server: xujing-jh-server
+            bin_client: xujing-jh-agent
           - os: macos-latest
             platform: macos-arm64
             target: aarch64-apple-darwin
             artifact_server: cyber-jianghu-server-macos-arm64
             artifact_client: cyber-jianghu-agent-macos-arm64
-            bin_server: cyber-jianghu-server
-            bin_client: cyber-jianghu-agent
+            bin_server: xujing-jh-server
+            bin_client: xujing-jh-agent
           - os: windows-latest
             platform: windows-x86_64
             target: x86_64-pc-windows-msvc
             artifact_server: cyber-jianghu-server-windows-x86_64.exe
             artifact_client: cyber-jianghu-agent-windows-x86_64.exe
-            bin_server: cyber-jianghu-server.exe
-            bin_client: cyber-jianghu-agent.exe
+            bin_server: xujing-jh-server.exe
+            bin_client: xujing-jh-agent.exe
 
     steps:
       - uses: actions/checkout@v7

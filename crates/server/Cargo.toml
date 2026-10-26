@@ -1,6 +1,6 @@
 [package]
 name = "xujing-jh-server"
-version = "0.2.3"
+version = "0.2.4"
 edition = "2024"
 authors = ["Xujing-JH Community"]
 license = "Apache-2.0"
@@ -13,8 +13,7 @@ name = "cyber_jianghu_server"
 path = "src/lib.rs"
 
 [[bin]]
-# 二进制改名在 B2 批次处理；本批次先固定旧名
-name = "cyber-jianghu-server"
+name = "xujing-jh-server"
 path = "src/main.rs"
 
 [dependencies]

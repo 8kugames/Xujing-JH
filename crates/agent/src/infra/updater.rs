@@ -659,7 +659,7 @@ pub async fn run_background(updater: Arc<Updater>) {
                     }
                 } else {
                     tracing::info!(
-                        "发现新版本 {}（auto_apply=false，仅提示；可通过 CLI `cyber-jianghu-agent update` 或 POST /api/v1/update/apply 手动安装）",
+                        "发现新版本 {}（auto_apply=false，仅提示；可通过 CLI `xujing-jh-agent update` 或 POST /api/v1/update/apply 手动安装）",
                         r.release_tag
                     );
                 }
@@ -712,7 +712,7 @@ fn load_update_config_from(path: &Path) -> UpdateConfig {
     config
 }
 
-/// `cyber-jianghu-agent update [--check-only]`：手动检查 / 安装。
+/// `xujing-jh-agent update [--check-only]`：手动检查 / 安装。
 /// CLI 只安装不重启（重启 CLI 自身会陷入执行循环）。
 pub async fn run_cli_update(check_only: bool) -> Result<()> {
     let config = load_update_config();

@@ -45,7 +45,7 @@ MODEL_REPO="${MODEL_REPO:-BAAI/bge-small-zh-v1.5}"
 MODEL_LOCAL="${MODEL_LOCAL-$PROJECT_ROOT/.bin/model/bge-small-zh-v1.5}"
 HEALTH_TIMEOUT="${HEALTH_TIMEOUT:-60}"
 
-BIN="$PROJECT_ROOT/target/x86_64-unknown-linux-gnu/release/cyber-jianghu-embedding"
+BIN="$PROJECT_ROOT/target/x86_64-unknown-linux-gnu/release/xujing-jh-embedding"
 
 echo "[同步] Dockerfile.runtime → 服务端（显式传送，不依赖远端 git 状态）"
 ssh -o BatchMode=yes "$SERVER" "test -d '$REMOTE_PROJECT/crates/embedding'" \
@@ -58,7 +58,7 @@ echo "[构建] 交叉编译（委托 build-linux-binary.sh）"
 BIN_HASH="$(bash "$PROJECT_ROOT/scripts/deploy/build-linux-binary.sh" -p xujing-jh-embedding)"
 
 echo "[上传] scp 二进制 + 远端组装 + up + verify"
-scp -q "$BIN" "$SERVER:~/cyber-jianghu-embedding"
+scp -q "$BIN" "$SERVER:~/xujing-jh-embedding"
 
 # 模型本地直传（幂等覆盖，远端组装时复用；本地副本缺失时由远端下载兜底）
 MODEL_FILES_OK=1
@@ -90,7 +90,7 @@ FREE_AFTER="$(free_mb)"
 echo "[磁盘] 清理前 ${FREE_BEFORE}MB → 清理后可用 ${FREE_AFTER}MB"
 
 mkdir -p "$RP/.bin"
-mv ~/cyber-jianghu-embedding "$RP/.bin/embedding-bin"
+mv ~/xujing-jh-embedding "$RP/.bin/embedding-bin"
 
 # 模型下载（幂等）：hf-mirror + SHA256 校验，缓存于 .bin/model/ 供组装复用
 MODEL_DIR="$RP/.bin/model/bge-small-zh-v1.5"

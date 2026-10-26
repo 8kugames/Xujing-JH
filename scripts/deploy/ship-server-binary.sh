@@ -61,7 +61,7 @@ sync_dirty_to_server() {
     done < <(git -C "$PROJECT_ROOT" status --porcelain)
 }
 
-BIN="$PROJECT_ROOT/target/$TARGET/release/cyber-jianghu-server"
+BIN="$PROJECT_ROOT/target/$TARGET/release/xujing-jh-server"
 
 # 远端必须能解析 rsync（rsync over ssh 要求两端都有二进制，否则远端 fish/bash
 # 把 "rsync --server" 当未知命令，pipe 早断报 "unexpected end of file"）。
@@ -114,7 +114,7 @@ echo "[构建] 交叉编译（委托 build-linux-binary.sh）"
 BIN_HASH="$(bash "$PROJECT_ROOT/scripts/deploy/build-linux-binary.sh" -p xujing-jh-server)"
 
 echo "[上传] scp + 远端打包 + up + verify"
-scp -q "$BIN" "$SERVER:~/cyber-jianghu-server"
+scp -q "$BIN" "$SERVER:~/xujing-jh-server"
 sync_dirty_to_server
 # 单引号逐个包裹：ssh 拼接会丢参数边界，空 SKIP_VERIFY 位被吞后参数
 # 前移占位，导致默认路径静默跳过 health 验证（已实证的潜伏 bug）
@@ -137,7 +137,7 @@ if [ "${FREE_AFTER:-0}" -lt "$MINFREE" ]; then
 fi
 
 mkdir -p "$RP/.bin"
-mv ~/cyber-jianghu-server "$RP/.bin/server-bin"
+mv ~/xujing-jh-server "$RP/.bin/server-bin"
 
 # 二进制注入打包：配方单一来源 crates/server/Dockerfile.runtime（本地已显式
 # 同步到远端），只做 COPY 打包，秒级完成，不再 patch 主 Dockerfile。镜像 tag

@@ -14,8 +14,8 @@ The agent's core logic (cognitive flow, three-tier memory, multi-persona) runs o
 
 | Mode                    | Description                                                                                                                                         | LLM Client          | Startup Command                       |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ------------------------------------- |
-| **Cognitive** (default) | Fully autonomous. The Agent calls the LLM internally and generates Intents in a closed loop.                                                        | `FallbackLlmClient` | `cyber-jianghu-agent run`             |
-| **Claw**                | External brain. The Agent bridges an external LLM via OpenClaw; the Agent itself only provides context, while the decision is injected by OpenClaw. | `OpenClawBridge`    | `cyber-jianghu-agent run --mode claw` |
+| **Cognitive** (default) | Fully autonomous. The Agent calls the LLM internally and generates Intents in a closed loop.                                                        | `FallbackLlmClient` | `xujing-jh-agent run`             |
+| **Claw**                | External brain. The Agent bridges an external LLM via OpenClaw; the Agent itself only provides context, while the decision is injected by OpenClaw. | `OpenClawBridge`    | `xujing-jh-agent run --mode claw` |
 
 ## Installation and Deployment
 
@@ -26,10 +26,10 @@ The agent's core logic (cognitive flow, three-tier memory, multi-persona) runs o
 cargo install --path crates/agent
 
 # Start in default mode
-cyber-jianghu-agent run
+xujing-jh-agent run
 
 # Or specify a port
-CYBER_JIANGHU_PORT=23340 cyber-jianghu-agent run
+CYBER_JIANGHU_PORT=23340 xujing-jh-agent run
 ```
 
 ### 2. Docker deployment

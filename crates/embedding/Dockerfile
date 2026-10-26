@@ -50,7 +50,7 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry,sharing=locked \
     --mount=type=cache,target=/usr/local/cargo/git,sharing=locked \
     --mount=type=cache,target=/app/target,sharing=locked \
     cargo build --release -p xujing-jh-embedding && \
-    cp /app/target/release/cyber-jianghu-embedding /app/embedding-bin
+    cp /app/target/release/xujing-jh-embedding /app/embedding-bin
 
 # ============================================================================
 # Stage 2: 运行

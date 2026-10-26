@@ -1,6 +1,6 @@
 [package]
 name = "xujing-jh-embedding"
-version = "0.1.4"
+version = "0.1.5"
 edition = "2024"
 authors = ["Xujing-JH Community"]
 license = "Apache-2.0"
@@ -11,7 +11,7 @@ name = "cyber_jianghu_embedding"
 path = "src/lib.rs"
 
 [[bin]]
-name = "cyber-jianghu-embedding"
+name = "xujing-jh-embedding"
 path = "src/bin/embedding-service.rs"
 
 [dependencies]

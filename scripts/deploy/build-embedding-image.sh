@@ -102,7 +102,7 @@ cargo build --release -p xujing-jh-embedding
 # 从卷中提取二进制到 .bin/（runtime 镜像 COPY 用）
 mkdir -p "$PROJECT_ROOT/.bin"
 docker run --rm -v "$TARGET_VOLUME:/x:ro" "$BUILDER" \
-    cat /x/release/cyber-jianghu-embedding > "$BIN_OUT"
+    cat /x/release/xujing-jh-embedding > "$BIN_OUT"
 BIN_HASH="$(md5 -q "$BIN_OUT" 2>/dev/null || md5sum "$BIN_OUT" | cut -d' ' -f1)"
 echo "[build done] md5=$BIN_HASH size=$(du -h "$BIN_OUT" | cut -f1)"
 

@@ -20,7 +20,7 @@ BUILDER="local-rust-trixie:builder"
 BASE="local-debian-slim:runtime"
 CARGO_VOLUME="cyj-agent-cargo"
 TARGET_VOLUME="cyj-agent-target"
-BIN_NAME="cyber-jianghu-agent"
+BIN_NAME="xujing-jh-agent"
 
 # -- base images: auto-bootstrap when missing (network path: docker pull + apt).
 # Moved from .test-agents/restart.sh ensure_base_images: the deploy tool is now
@@ -97,7 +97,7 @@ cargo build --release -p xujing-jh-agent
 # 从卷中提取二进制到 .bin/（runtime 镜像 COPY 用）
 mkdir -p "$PROJECT_ROOT/.bin"
 docker run --rm -v "$TARGET_VOLUME:/x:ro" "$BUILDER" \
-    cat /x/release/cyber-jianghu-agent > "$PROJECT_ROOT/.bin/agent-bin-linux"
+    cat /x/release/xujing-jh-agent > "$PROJECT_ROOT/.bin/agent-bin-linux"
 BIN_HASH="$(md5 -q "$PROJECT_ROOT/.bin/agent-bin-linux" 2>/dev/null || md5sum "$PROJECT_ROOT/.bin/agent-bin-linux" | cut -d' ' -f1)"
 echo "[build done] md5=$BIN_HASH size=$(du -h "$PROJECT_ROOT/.bin/agent-bin-linux" | cut -f1)"
 

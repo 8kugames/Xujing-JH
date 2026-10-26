@@ -48,7 +48,7 @@ pub(crate) fn show_config() -> Result<()> {
             config.runtime.port.to_string()
         };
         println!("  通过 Web 面板创建: http://localhost:{}/", display_port);
-        println!("  或通过 CLI: cyber-jianghu-agent create-character --name 名字");
+        println!("  或通过 CLI: xujing-jh-agent create-character --name 名字");
     }
 
     println!("\n运行时配置:");

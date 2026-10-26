@@ -14,8 +14,8 @@
 //
 // 1. 首次运行：自动生成 device_id 并向服务器注册
 // 2. 后续运行：自动使用已保存的身份连接服务器
-// 3. Cognitive 模式（默认）：cyber-jianghu-agent run --mode cognitive
-// 4. Claw 模式：cyber-jianghu-agent run --mode claw
+// 3. Cognitive 模式（默认）：xujing-jh-agent run --mode cognitive
+// 4. Claw 模式：xujing-jh-agent run --mode claw
 // 5. Web 面板：http://localhost:<端口>/
 // 6. HTTP API：http://localhost:<端口>/api/v1/*
 // ============================================================================
@@ -56,7 +56,7 @@ use cyber_jianghu_protocol::{EraSettings, Intent, ServerMessage, WorldBuildingRu
 // ============================================================================
 
 #[derive(Parser)]
-#[command(name = "cyber-jianghu-agent")]
+#[command(name = "xujing-jh-agent")]
 #[command(about = "虚境·江湖 Agent - 连接游戏世界", long_about = None)]
 struct Cli {
     #[command(subcommand)]

@@ -10,8 +10,8 @@
 
 # Rust build artifacts (not needed in build context)
 target/
-!target/release/cyber-jianghu-agent
-!target/release/cyber-jianghu-server
+!target/release/xujing-jh-agent
+!target/release/xujing-jh-server
 
 # Documentation
 docs/

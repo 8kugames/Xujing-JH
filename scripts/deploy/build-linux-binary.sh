@@ -2,8 +2,8 @@
 # build-linux-binary.sh - 交叉编译 linux 二进制 + md5 + .bin 本地留存（共享助手）
 #
 # 单一来源收敛 zigbuild 交叉编译的前置检查与产物处理：
-#   - scripts/deploy/ship-server-binary.sh   (cyber-jianghu-server)
-#   - .test-agents/push_server.sh            (cyber-jianghu-agent)
+#   - scripts/deploy/ship-server-binary.sh   (xujing-jh-server)
+#   - .test-agents/push_server.sh            (xujing-jh-agent)
 #
 # stdout 仅输出 md5（供调用方命令替换捕获），全部进度日志走 stderr
 # （命令替换下 stderr 仍实时可见，且不污染 md5 捕获）。
@@ -13,8 +13,8 @@
 #   MD5="$(./scripts/deploy/build-linux-binary.sh -p xujing-jh-agent)"
 #
 # 产物：target/x86_64-unknown-linux-gnu/release/<pkg>，
-#       副本 .bin/<short>-bin（cyber-jianghu-server → server-bin，
-#       cyber-jianghu-agent → agent-bin），与远端 .bin/ 命名约定一致，
+#       副本 .bin/<short>-bin（xujing-jh-server → server-bin，
+#       xujing-jh-agent → agent-bin），与远端 .bin/ 命名约定一致，
 #       便于核对 md5 / 回滚。
 
 set -euo pipefail
@@ -23,10 +23,10 @@ PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 TARGET="x86_64-unknown-linux-gnu"
 
 case "${1:-}" in
-    -p) PKG="${2:?-p 需要包名，如 cyber-jianghu-server}" ;;
-    *)  echo "usage: $0 -p <package>（如 cyber-jianghu-server / cyber-jianghu-agent）" >&2; exit 1 ;;
+    -p) PKG="${2:?-p 需要包名，如 xujing-jh-server}" ;;
+    *)  echo "usage: $0 -p <package>（如 xujing-jh-server / xujing-jh-agent）" >&2; exit 1 ;;
 esac
-BIN_NAME="${PKG#cyber-jianghu-}-bin"
+BIN_NAME="${PKG#xujing-jh-}-bin"
 
 command -v cargo-zigbuild >/dev/null || { echo "[错误] 缺 cargo-zigbuild" >&2; exit 1; }
 command -v zig >/dev/null || { echo "[错误] 缺 zig" >&2; exit 1; }

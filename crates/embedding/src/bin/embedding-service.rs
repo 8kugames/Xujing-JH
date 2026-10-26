@@ -22,7 +22,7 @@ use tower_http::cors::CorsLayer;
 // ============================================================================
 
 #[derive(Parser, Debug)]
-#[command(name = "cyber-jianghu-embedding", about = "Embedding HTTP 服务")]
+#[command(name = "xujing-jh-embedding", about = "Embedding HTTP 服务")]
 struct Args {
     /// 监听端口
     #[arg(long, default_value = "23350", env = "EMBEDDING_PORT")]
