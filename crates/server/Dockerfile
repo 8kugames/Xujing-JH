@@ -53,6 +53,7 @@ COPY crates/agent/Cargo.toml ./crates/agent/
 # 创建最小占位源文件，使 workspace 解析成功
 RUN mkdir -p crates/protocol/src crates/embedding/src crates/server/src crates/agent/src/bin && \
     echo "fn main() {}" > crates/embedding/src/lib.rs && \
+    echo "pub fn placeholder() {}" > crates/server/src/lib.rs && \
     echo "fn main() {}" > crates/server/src/main.rs && \
     echo "fn main() {}" > crates/agent/src/bin/cyber-jianghu-agent.rs
 

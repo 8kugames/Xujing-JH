@@ -59,6 +59,7 @@ RUN mkdir -p crates/protocol/src crates/server/src crates/agent/src/bin && \
     echo "pub fn placeholder() {}" > crates/protocol/src/lib.rs && \
     echo "fn main() {}" > crates/embedding/src/lib.rs && \
     echo "fn main() {}" > crates/embedding/src/bin/embedding-service.rs && \
+    echo "pub fn placeholder() {}" > crates/server/src/lib.rs && \
     echo "fn main() {}" > crates/server/src/main.rs && \
     echo "pub fn placeholder() {}" > crates/agent/src/lib.rs && \
     echo "fn main() {}" > crates/agent/src/bin/cyber-jianghu-agent.rs
