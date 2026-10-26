@@ -4,6 +4,19 @@
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-10-26
+
+### Features
+
+- **自更新源仓库自动迁移**（agent）：`agent.yaml` 中历史 `update.repo: 8kugames/Cyber-Jianghu` 在反序列化层自动归一化为 `8kugames/Xujing-JH`，并由 `Config::from_file` / `load_update_config` 原子回写配置文件（写入失败仍使用新值）；已部署 agent 无需手工改配置即可继续接收后续 Release。
+- **项目版本唯一真源迁移至仓库根 `Version`**（server + build）：server 通过编译期 `include_str!` 嵌入项目版本，`/api/v1/version` 与 `/health` 返回项目版本而非 crate 版本；主/CI Dockerfile 同步复制 `Version`，pre-commit 维持 crate 版本独立演进（版本双轨制）。
+
+### Upgrade Notes
+
+- **仓库更名 `Xujing-JH`**：GitHub 旧地址（clone/API/Release）自动重定向；CI 新镜像为 `ghcr.io/8kugames/xujing-jh-server`，旧镜像包保留但不再更新，外部拉取方需同步调整。
+- **品牌标点统一**：文档、面板与安装脚本中的「虚境：江湖」统一为「虚境·江湖」。
+- **pre-commit**：恢复 bash shebang，避免钩子解释器回退导致输出污染。
+
 ## [0.1.370] - 2026-10-06
 
 ### License
